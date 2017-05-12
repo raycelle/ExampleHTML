@@ -10,4 +10,4 @@ function create(){
 	game.add.sprite(0,0,'star');
 }
 
-function upload(){}
+function update(){}
