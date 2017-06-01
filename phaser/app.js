@@ -97,6 +97,13 @@ function create(){
   lifetext.setShadow(3,3,'rgba(0,0,0,0.5)',2);
   lifelabel.setTextBounds(0,0,800,100);
   lifetext.setTextBounds(0,0,800,100);
+
+  //Game Over 
+  goText = game.add.text(game.world.centerX,game.world.centerY - 200,' ',style});
+  //goText.anchor.setTo(0.5, 0.5);
+  //goText.font = 'Press Start 2P';
+  goText.visible = false;
+  //goText.fixedToCamera = true;
 }
 
 function update(){
@@ -181,9 +188,18 @@ function loseLife(player, enemy){
 	life -= 1;
 	lifetext.setText(life);
 
+  if(life >= 0){
 	//remove and respawn enemy
-	enemy.kill();
-	enemy.reset(760, 20);
+	 enemy.kill();
+	 enemy.reset(760, 20);
+  } else{
+    player.kill()
+      goText.text="GAME OVER!" //\nPress Enter to try again...";
+      goText.visible = true;
+
+      //var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+      //restartButton.onDown.addOnce(restartGame);
+  }
 }
 
 //define loseLifeLeft
