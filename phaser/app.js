@@ -99,7 +99,9 @@ function create(){
   lifetext.setTextBounds(0,0,800,100);
 
   //Game Over 
-  goText = game.add.text(game.world.centerX,game.world.centerY - 200,' ',style);
+  goText = game.add.text(-60,0,' ',style);
+  goText.setShadow(3,3,'rgba(0,0,0,0.5)',2)
+  goText.setTextBounds(0,200,800,100)
   //goText.anchor.setTo(0.5, 0.5);
   //goText.font = 'Press Start 2P';
   goText.visible = false;
@@ -165,6 +167,10 @@ function update(){
 	game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, this);
 	game.physics.arcade.overlap(player, enemy3, loseLife, null, this);
 
+  if(life < 0){
+    endGame();
+  }
+
 }
 
 //define collectStar function
@@ -188,18 +194,18 @@ function loseLife(player, enemy){
 	life -= 1;
 	lifetext.setText(life);
 
-  if(life >= 0){
+  //if(life >= 0){
 	//remove and respawn enemy
 	 enemy.kill();
 	 enemy.reset(760, 20);
-  } else{
-    player.kill()
-      goText.text="GAME OVER!" //\nPress Enter to try again...";
-      goText.visible = true;
+  // } else{
+  //   player.kill()
+  //   goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
+  //   goText.visible = true;
 
-      //var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-      //restartButton.onDown.addOnce(restartGame);
-  }
+  //     //var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  //     //restartButton.onDown.addOnce(restartGame);
+  // }
 }
 
 //define loseLifeLeft
@@ -211,4 +217,13 @@ function loseLifeLeft(player, enemy){
 	//remove and respawn enemy
 	enemy.kill();
 	enemy.reset(10, 20);
+}
+
+function endGame(){
+  player.kill();
+  goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
+  goText.visible = true;
+  enemy1.kill();
+  enemy2.kill();
+  enemy3.kill();
 }
