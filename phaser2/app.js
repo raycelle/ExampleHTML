@@ -118,11 +118,13 @@ function update(){
   if (ledge1.body.velocity.x > 0 && ledge1.x >= 800)
             {
                 ledge1.x = -160;
+                enemy1.x = -140;
             }
 
   if (ledge2.body.velocity.x > 0 && ledge2.x >= 800)
             {
                 ledge2.x = -160;
+                enemy2.x = -140;
             }
 	//collide player and enemies with platforms
 	game.physics.arcade.collide(player, platforms);
@@ -175,7 +177,7 @@ function update(){
 	if(enemy3.x > 759){
 		enemy3.animations.play('left');
 		enemy3.body.velocity.x = -80;
-	}else if(enemy3.x < 40){
+	}else if(enemy3.x < 20){
 		enemy3.animations.play('right');
 		enemy3.body.velocity.x = 80;
 	}
