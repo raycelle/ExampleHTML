@@ -99,7 +99,7 @@ function create(){
   lifetext.setTextBounds(0,0,800,100);
 
   //Game Over 
-  goText = game.add.text(-60,0,' ',style);
+  goText = game.add.text(-30,0,' ',style);
   goText.setShadow(3,3,'rgba(0,0,0,0.5)',2)
   goText.setTextBounds(0,200,800,100)
   //goText.anchor.setTo(0.5, 0.5);
@@ -226,4 +226,10 @@ function endGame(){
   enemy1.kill();
   enemy2.kill();
   enemy3.kill();
+  scorelabel.visible = false;
+  scoretext.visible = false;
+  lifelabel.visible = false;
+  lifetext.visible = false;
+
+
 }
