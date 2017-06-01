@@ -7,6 +7,7 @@ var life = 3;
 function preload(){
   game.load.image('sky', 'assets/sky.png');
   game.load.image('ground', 'assets/platform.png');
+  game.load.image('platform''assets/platform2');
   game.load.image('star', 'assets/star.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
@@ -24,10 +25,12 @@ function create(){
   ground.scale.setTo(2, 2);
   ground.body.immovable = true;
   // Create the ledges
-  var ledge = platforms.create(400, 400, 'ground');
-  ledge.body.immovable = true;
-  ledge = platforms.create(-150, 250, 'ground');
-  ledge.body.immovable = true;
+  var ledge1 = platforms.create(400, 400, 'platform');
+  ledge1.body.immovable = true;
+  ledge1.body.velocity.x = 100;
+  ledge2 = platforms.create(-150, 250, 'platform');
+  ledge2.body.immovable = true;
+  ledge2.body.velocity.x = 100;
   // Creating the player sprite
   player = game.add.sprite(32, 400, 'dude');
     // Animating the player sprite
@@ -109,11 +112,24 @@ function create(){
 }
 
 function update(){
+
+  if (ledge1.body.velocity.x > 0 && ledge1.x >= 800)
+            {
+                ledge1.x = -160;
+            }
+
+  if (ledge2.body.velocity.x > 0 && ledge2.x >= 800)
+            {
+                ledge2.x = -160;
+            }
 	//collide player and enemies with platforms
 	game.physics.arcade.collide(player, platforms);
 	game.physics.arcade.collide(enemy1, platforms);
 	game.physics.arcade.collide(enemy2, platforms);
 	game.physics.arcade.collide(enemy3, platforms);
+
+
+  var standing = player.body.blocked.down || player.body.touching.down;
 
 	//reset the player's velocity if no events.
 	player.body.velocity.x = 0;
@@ -136,6 +152,8 @@ function update(){
 	if(cursors.up.isDown && player.body.touching.down){
 		player.body.velocity.y = -300;
 	}
+
+  
 
 	//Enemy AI
 	if(enemy1.x > 759){
