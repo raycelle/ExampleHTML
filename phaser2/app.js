@@ -26,9 +26,11 @@ function create(){
   ground.body.immovable = true;
   // Create the ledges
   ledge1 = platforms.create(400, 400, 'platform');
+  ledge1.scale.setTo(0.5,0.5);
   ledge1.body.immovable = true;
   ledge1.body.velocity.x = 100;
   ledge2 = platforms.create(-150, 250, 'platform');
+  ledge2.scale.setTo(0.5,0.5);
   ledge2.body.immovable = true;
   ledge2.body.velocity.x = 100;
   // Creating the player sprite
@@ -48,7 +50,7 @@ function create(){
     game.physics.arcade.enable(enemy1);
     enemy1.body.bounce.y = 0.2;
     enemy1.body.gravity.y = 500;
-    enemy1.body.collideWorldBounds = true;
+    enemy1.body.collideWorldBounds = false;
 
   enemy2 = game.add.sprite(10, 20, 'baddie');
     // Animate the enemy2
@@ -57,7 +59,7 @@ function create(){
     game.physics.arcade.enable(enemy2);
     enemy2.body.bounce.y = 0.2;
     enemy2.body.gravity.y = 500;
-    enemy2.body.collideWorldBounds = true;
+    enemy2.body.collideWorldBounds = false;
 
   enemy3 = game.add.sprite(200, 20, 'baddie');
     // Animate the enemy3
@@ -66,7 +68,7 @@ function create(){
     game.physics.arcade.enable(enemy3);
     enemy3.body.bounce.y = 0.2;
     enemy3.body.gravity.y = 500;
-    enemy3.body.collideWorldBounds = true;
+    enemy3.body.collideWorldBounds = false;
 
   // Create keyboard entries
   cursors = game.input.keyboard.createCursorKeys();
@@ -156,24 +158,24 @@ function update(){
 
 
 	//Enemy AI
-	if(enemy1.x > 759){
+	if(enemy1.x > ledge1.x + 200){
 		enemy1.animations.play('left');
 		enemy1.body.velocity.x = -120;
-	}else if(enemy1.x < 405){
+	}else if(enemy1.x < ledge1.x + 40){
 		enemy1.animations.play('right');
 		enemy1.body.velocity.x = 120;
 	}
-	if(enemy2.x > 200){
+	if(enemy2.x > ledge2.x + 200){
 		enemy2.animations.play('left');
 		enemy2.body.velocity.x = -80;
-	}else if(enemy2.x < 21){
+	}else if(enemy2.x < ledge2.x + 40){
 		enemy2.animations.play('right');
 		enemy2.body.velocity.x = 80;
 	}
 	if(enemy3.x > 759){
 		enemy3.animations.play('left');
 		enemy3.body.velocity.x = -80;
-	}else if(enemy3.x < 201){
+	}else if(enemy3.x < 40){
 		enemy3.animations.play('right');
 		enemy3.body.velocity.x = 80;
 	}
