@@ -219,7 +219,7 @@ function loseLife(player, enemy){
   //if(life >= 0){
 	//remove and respawn enemy
 	 enemy.kill();
-	 enemy.reset(760, 20);
+	 enemy.reset(ledge2.x, 20);
   // } else{
   //   player.kill()
   //   goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
@@ -238,7 +238,7 @@ function loseLifeLeft(player, enemy){
 
 	//remove and respawn enemy
 	enemy.kill();
-	enemy.reset(10, 20);
+	enemy.reset(ledge1.x, 20);
 }
 
 function endGame(){
