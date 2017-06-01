@@ -99,7 +99,7 @@ function create(){
   lifetext.setTextBounds(0,0,800,100);
 
   //Game Over 
-  goText = game.add.text(game.world.centerX,game.world.centerY - 200,' ',style});
+  goText = game.add.text(game.world.centerX,game.world.centerY - 200,' ',style);
   //goText.anchor.setTo(0.5, 0.5);
   //goText.font = 'Press Start 2P';
   goText.visible = false;
