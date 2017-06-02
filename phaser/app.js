@@ -10,6 +10,7 @@ function preload(){
   game.load.image('star', 'assets/star.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+  game.load.image('health','assets/firstaid.png')
 }
 
 function create(){
@@ -77,6 +78,11 @@ function create(){
     star.body.gravity.y = 200;
     star.body.bounce.y = 0.7 + Math.random() * 0.2;
   }
+
+  //create health packs group
+  healths = game.add.physicsGroup();
+  healths.enableBody = true;
+
 
   //set text style
   var style = {font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
@@ -167,6 +173,10 @@ function update(){
 	game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, this);
 	game.physics.arcade.overlap(player, enemy3, loseLife, null, this);
 
+  //collide health packs with platform and player
+  game.physics.arcade.collide(healths, platforms);
+  game.physics.arcade.overlap(player, healths, collectHealth, null, this);
+
   if(life < 0){
     endGame();
   }
@@ -185,7 +195,13 @@ function collectStar(player,star){
 	//create new star
 	star = stars.create(Math.floor(Math.random()*750),0,'star');
 	star.body.gravity.y = 200;
-    star.body.bounce.y = 0.7 + Math.random() * 0.2;
+  star.body.bounce.y = 0.7 + Math.random() * 0.2;
+
+  //create health pack if collected multiple of 10
+  if(score % 10 == 0){
+    health = healths.create(Math.floor(Math.random()*750),0,'star');
+    health.body.gravity.y = 200;
+  }
 }
 
 //define loseLife
@@ -231,5 +247,11 @@ function endGame(){
   lifelabel.visible = false;
   lifetext.visible = false;
 
+}
+
+function collectHealth(player,health){
+  health.kill();
+  life += 1;
+  lifetext.setText(life);
 }
 
