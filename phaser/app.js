@@ -108,7 +108,7 @@ function create(){
   //V2 - Game Over 
   goText = game.add.text(0,0,' ',style);
   goText.setShadow(3,3,'rgba(0,0,0,0.5)',2)
-  goText.setTextBounds(0,200,800,100)
+  goText.setTextBounds(100,200,800,100)
   goText.visible = false;
 
 }
