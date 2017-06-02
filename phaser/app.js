@@ -248,8 +248,8 @@ function endGame(){
   lifelabel.visible = false;
   lifetext.visible = false;
 
-  //var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  //restartButton.onDown
+  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  restartButton.onDown.addOnce(restartGame);
 
 }
 //V2
