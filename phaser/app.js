@@ -248,8 +248,8 @@ function endGame(){
   lifelabel.visible = false;
   lifetext.visible = false;
 
-  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
-  restartButton.onDown.addOnce(restartGame);
+  //var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  //restartButton.onDown
 
 }
 //V2
@@ -260,6 +260,7 @@ function collectHealth(player,health){
 }
 //V2
 function restartGame(){
+  alert("restart");
   player.reset(32,400);
   life = 3;
   score = 0;
