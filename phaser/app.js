@@ -10,6 +10,7 @@ function preload(){
   game.load.image('star', 'assets/star.png');
   game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
   game.load.spritesheet('baddie', 'assets/baddie.png', 32, 32);
+  //V2 - health packs
   game.load.image('health','assets/firstaid.png');
 }
 
@@ -79,7 +80,7 @@ function create(){
     star.body.bounce.y = 0.7 + Math.random() * 0.2;
   }
 
-  //create health packs group
+  //V2 - create health packs group
   healths = game.add.physicsGroup();
   healths.enableBody = true;
 
@@ -104,14 +105,12 @@ function create(){
   lifelabel.setTextBounds(0,0,800,100);
   lifetext.setTextBounds(0,0,800,100);
 
-  //Game Over 
+  //V2 - Game Over 
   goText = game.add.text(0,0,' ',style);
   goText.setShadow(3,3,'rgba(0,0,0,0.5)',2)
   goText.setTextBounds(0,200,800,100)
-  //goText.anchor.setTo(0.5, 0.5);
-  //goText.font = 'Press Start 2P';
   goText.visible = false;
-  //goText.fixedToCamera = true;
+
 }
 
 function update(){
@@ -173,10 +172,11 @@ function update(){
 	game.physics.arcade.overlap(player, enemy2, loseLifeLeft, null, this);
 	game.physics.arcade.overlap(player, enemy3, loseLife, null, this);
 
-  //collide health packs with platform and player
+  //V2 - collide health packs with platform and player
   game.physics.arcade.collide(healths, platforms);
   game.physics.arcade.overlap(player, healths, collectHealth, null, this);
 
+  //V2 - check if no more lives
   if(life < 0){
     endGame();
   }
@@ -197,7 +197,7 @@ function collectStar(player,star){
 	star.body.gravity.y = 200;
   star.body.bounce.y = 0.7 + Math.random() * 0.2;
 
-  //create health pack if collected multiple of 10
+  //V2 - create health pack if collected multiple of 10
   if(score % 10 == 0){
     health = healths.create(Math.floor(Math.random()*750),0,'health');
     health.body.gravity.y = 200;
@@ -235,6 +235,7 @@ function loseLifeLeft(player, enemy){
 	enemy.reset(10, 20);
 }
 
+//V2 - end game function
 function endGame(){
   player.kill();
   goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
@@ -247,11 +248,25 @@ function endGame(){
   lifelabel.visible = false;
   lifetext.visible = false;
 
-}
+  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  restartButton.onDown.addOnce(restartGame);
 
+}
+//V2
 function collectHealth(player,health){
   health.kill();
   life += 1;
   lifetext.setText(life);
 }
-
+//V2
+function restartGame(){
+  player.reset(32,400);
+  life = 3;
+  score = 0;
+  lifetext.setText(life);
+  scoretext.setText(score);
+  scorelabel.visible = true;
+  scoretext.visible = true;
+  lifelabel.visible = true;
+  lifetext.visible = true;
+}
