@@ -238,7 +238,7 @@ function loseLifeLeft(player, enemy){
 //V2 - end game function
 function endGame(){
   player.kill();
-  goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
+  goText.text="GAME OVER! \n You scored " + score + "\n Press Enter to try again...";
   goText.visible = true;
   // enemy1.kill();
   // enemy2.kill();
@@ -260,7 +260,6 @@ function collectHealth(player,health){
 }
 //V2
 function restartGame(){
-  alert("restart");
   player.reset(32,400);
   life = 3;
   score = 0;
@@ -270,4 +269,5 @@ function restartGame(){
   scoretext.visible = true;
   lifelabel.visible = true;
   lifetext.visible = true;
+  goText.visible = false;
 }
