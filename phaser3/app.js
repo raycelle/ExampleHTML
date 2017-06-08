@@ -74,7 +74,8 @@ function create(){
 
   // Create keyboard entries
   cursors = game.input.keyboard.createCursorKeys();
-  space = game.input.keyboard.addKeys(Phaser.KeyCode.SPACEBAR);
+  space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+   game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
 
   // Create the stars
   stars = game.add.physicsGroup();
@@ -89,6 +90,7 @@ function create(){
   //create bullets
   bullets = game.add.physicsGroup();
   bullets.enableBody = true;
+  bullets.physicsBodyType = Phaser.Physics.ARCADE;
   bullets.createMultiple(20, 'bullet');
   bullets.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', resetBullet);
   bullets.setAll('checkWorldBounds', true);
@@ -281,7 +283,7 @@ function fireBullet() {
     // If we have a laser, set it to the starting position
     bullet.reset(player.x, player.y - 20);
     // Give it a velocity of -500 so it starts shooting
-    bullet.body.velocity.x = -500;
+    bullet.body.velocity.x = -200;
   }
  
 }
