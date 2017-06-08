@@ -91,9 +91,11 @@ function create(){
   bullets = game.add.physicsGroup();
   bullets.enableBody = true;
   bullets.physicsBodyType = Phaser.Physics.ARCADE;
+  bullets.scale.setTo(0.25, 0.25);
   bullets.createMultiple(20, 'bullet');
   bullets.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', resetBullet);
   bullets.setAll('checkWorldBounds', true);
+
 
   //set text style
   var style = {font: "bold 32px Arial", fill: "#fff", boundsAlignH: "center", boundsAlignV: "middle"};
