@@ -265,7 +265,7 @@ function loseLifeLeft(player, enemy){
 
 function endGame(){
   player.kill();
-  goText.text="GAME OVER! \n You scored " + score "\nPress Enter to try again...";
+  goText.text="GAME OVER! \n You scored " + score + "\nPress Enter to try again...";
   goText.visible = true;
   // enemy1.kill();
   // enemy2.kill();
