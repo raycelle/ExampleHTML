@@ -75,7 +75,7 @@ function create(){
   // Create keyboard entries
   cursors = game.input.keyboard.createCursorKeys();
   space = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
-   game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
+  // game.input.keyboard.addKeyCapture(Phaser.Keyboard.SPACEBAR);
 
   // Create the stars
   stars = game.add.physicsGroup();
@@ -211,6 +211,10 @@ function update(){
     endGame();
   }
 
+  game.physics.arcade.overlap(bullets, enemy1, resetEnemy, null, this);
+  game.physics.arcade.overlap(bullets, enemy2, resetEnemyLeft, null, this);
+  game.physics.arcade.overlap(bullets, enemy3, resetEnemy, null, this);
+
 }
 
 //define collectStar function
@@ -261,7 +265,7 @@ function loseLifeLeft(player, enemy){
 
 function endGame(){
   player.kill();
-  goText.text="GAME OVER! \n You scored " + score //\nPress Enter to try again...";
+  goText.text="GAME OVER! \n You scored " + score "\nPress Enter to try again...";
   goText.visible = true;
   // enemy1.kill();
   // enemy2.kill();
@@ -270,6 +274,9 @@ function endGame(){
   scoretext.visible = false;
   lifelabel.visible = false;
   lifetext.visible = false;
+
+  var restartButton = game.input.keyboard.addKey(Phaser.Keyboard.ENTER);
+  restartButton.onDown.addOnce(restartGame);
 
 }
 
@@ -296,3 +303,34 @@ function fireBullet() {
  
 }
 
+function resetEnemyLeft(bullet, enemy){
+
+  //remove and respawn enemy
+  enemy.kill();
+  enemy.reset(ledge1.x, 20);
+
+  bullet.kill();
+}
+
+function resetEnemy(bullet, enemy){
+
+  //remove and respawn enemy
+  enemy.kill();
+  enemy.reset(ledge2.x, 20);
+
+  bullet.kill();
+}
+
+
+function restartGame(){
+  player.reset(32,400);
+  life = 3;
+  score = 0;
+  lifetext.setText(life);
+  scoretext.setText(score);
+  scorelabel.visible = true;
+  scoretext.visible = true;
+  lifelabel.visible = true;
+  lifetext.visible = true;
+  goText.visible = false;
+}
