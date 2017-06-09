@@ -304,21 +304,20 @@ function fireBullet() {
 }
 
 function resetEnemyLeft(bullet, enemy){
-
+  bullet.kill();
   //remove and respawn enemy
   enemy.kill();
-  bullet.reset(ledge1.x, 20);
+  enemy.reset(ledge1.x, 20);
 
-  bullet.kill();
+  
 }
 
 function resetEnemy(bullet, enemy){
-
+  bullet.kill();
   //remove and respawn enemy
   enemy.kill();
-  bullet.reset(ledge2.x, 20);
+  enemy.reset(ledge2.x, 20);
 
-  bullet.kill();
 }
 
 
