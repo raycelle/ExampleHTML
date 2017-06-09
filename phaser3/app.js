@@ -211,9 +211,9 @@ function update(){
     endGame();
   }
 
-  game.physics.arcade.overlap(bullets, enemy1, resetEnemy, null, this);
-  game.physics.arcade.overlap(bullets, enemy2, resetEnemyLeft, null, this);
-  game.physics.arcade.overlap(bullets, enemy3, resetEnemy, null, this);
+  game.physics.arcade.overlap(enemy1, bullets, resetEnemy, null, this);
+  game.physics.arcade.overlap(enemy2, bullets, resetEnemyLeft, null, this);
+  game.physics.arcade.overlap(enemy3, bullets, resetEnemy, null, this);
 
 }
 
@@ -303,7 +303,7 @@ function fireBullet() {
  
 }
 
-function resetEnemyLeft(bullet, enemy){
+function resetEnemyLeft(enemy, bullet){
   bullet.kill();
   //remove and respawn enemy
   enemy.kill();
@@ -312,7 +312,7 @@ function resetEnemyLeft(bullet, enemy){
   
 }
 
-function resetEnemy(bullet, enemy){
+function resetEnemy(enemy, bullet){
   bullet.kill();
   //remove and respawn enemy
   enemy.kill();
