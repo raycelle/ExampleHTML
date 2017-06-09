@@ -283,7 +283,7 @@ function fireBullet() {
   var bullet = bullets.getFirstExists(false);
   if (bullet && cursors.left.isDown) {
     // If we have a laser, set it to the starting position
-    bullet.reset(player.x, player.y - 20);
+    bullet.reset(player.x, player.y);
     // Give it a velocity of -500 so it starts shooting
     bullet.body.velocity.x = -300;
   }
