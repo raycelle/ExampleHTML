@@ -90,7 +90,7 @@ function create(){
   //create bullets
   bullets = game.add.physicsGroup();
   bullets.enableBody = true;
-  bullets.physicsBodyType = Phaser.Physics.ARCADE;
+  //bullets.physicsBodyType = Phaser.Physics.ARCADE;
   //bullets.scale.setTo(0.25, 0.25);
   bullets.createMultiple(20, 'bullet');
   bullets.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', resetBullet);
