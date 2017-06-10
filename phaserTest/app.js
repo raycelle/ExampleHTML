@@ -259,4 +259,15 @@ function collectHealth(player,health){
   lifetext.setText(life);
 }
 //V2
-
+function restartGame(){
+  player.reset(32,400);
+  life = 3;
+  score = 0;
+  lifetext.setText(life);
+  scoretext.setText(score);
+  scorelabel.visible = true;
+  scoretext.visible = true;
+  lifelabel.visible = true;
+  lifetext.visible = true;
+  goText.visible = false;
+}
