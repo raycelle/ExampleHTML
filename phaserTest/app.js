@@ -255,14 +255,14 @@ function endGame(){
 //V2
 function collectHealth(player,health){
   health.kill();
-  life += 1;
+  life += 5;
   lifetext.setText(life);
 }
 //V2
 function restartGame(){
   player.reset(32,400);
   life = 3;
-  score = 0;
+  score = 20;
   lifetext.setText(life);
   scoretext.setText(score);
   scorelabel.visible = true;
