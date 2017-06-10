@@ -2,7 +2,7 @@ console.log("test")
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload:preload, create:create, update:update});
 var score = 0;
-var life = 5;
+var life = 20;
 
 function preload(){
   game.load.image('sky', 'assets/sky.png');
