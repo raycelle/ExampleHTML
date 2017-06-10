@@ -1,7 +1,7 @@
 console.log("test")
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', {preload:preload, create:create, update:update});
-var score = 0;
+var score = 10;
 var life = 5;
 
 function preload(){
